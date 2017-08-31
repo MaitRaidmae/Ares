@@ -1,0 +1,53 @@
+﻿@model IEnumerable<Ares.Models.Offer>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+                <th>
+                    <a asp-action="Index" asp-route-sortOrder="@ViewData["BuyerNameSortParm"]">@Html.DisplayNameFor(model => model.BuyerName)</a>     
+                </th>
+                <th>
+                    <a asp-action="Index" asp-route-sortOrder="@ViewData["TimeSortParm"]">@Html.DisplayNameFor(model => model.OfferTime)</a>
+                </th>
+                <th>
+                    <a asp-action="Index" asp-route-sortOrder="@ViewData["AmountSortParm"]">@Html.DisplayNameFor(model => model.OfferAmount)</a>
+                </th>
+                <th>
+                    <a asp-action="Index" asp-route-sortOrder="@ViewData["AuctionItemSortParm"]">@Html.DisplayNameFor(model => model.AuctionItem)</a>
+                </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.BuyerName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OfferTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OfferAmount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AuctionItem.Name)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
