@@ -21,7 +21,7 @@ namespace Ares.Controllers
         // GET: Offers
         public async Task<IActionResult> Index(string sortOrder)
         {
-            ViewData["BuyerNameSortParm"] = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "Name";
+            ViewData["BuyerNameSortParm"] = sortOrder == "Name" ? "name_desc" : "Name";
             ViewData["TimeSortParm"] = sortOrder == "Time" ? "time_desc" : "Time";
             ViewData["AmountSortParm"] = sortOrder == "Amount" ? "amount_desc" : "Amount";
             ViewData["AuctionItemSortParm"] = sortOrder == "AuctionItem" ? "auctionItem_desc" : "AuctionItem";
