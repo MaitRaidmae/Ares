@@ -2,7 +2,6 @@
 using Ares.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -61,26 +60,6 @@ namespace Ares.Controllers
             return View(await auctionItems.AsNoTracking().ToListAsync());
         }
 
-        // GET: AuctionItems/Details/5
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var auctionItem = await _context.AuctionItem
-             
-                .SingleOrDefaultAsync(m => m.ID == id);
-            if (auctionItem == null)
-            {
-                return NotFound();
-            }
-
-            auctionItem.Offers = _context.Offer.Where(o => o.AuctionItemID == auctionItem.ID) as List <Offer>;
-
-            return View(auctionItem);
-        }
 
         // GET: AuctionItems/Create
         public IActionResult Create()

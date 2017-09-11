@@ -1,0 +1,73 @@
+﻿@model Ares.Models.AuctionItemDetail
+@{
+    ViewData["Title"] = "Details";
+}
+<h2>Details</h2>
+<div>
+    <h4>Auction Item</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Item.Name)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Item.Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Item.Description)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Item.Description)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Item.AuctionEndTime)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Item.AuctionEndTime)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Item.ItemState)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Item.ItemState)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-controller="Offers" asp-action="ItemOffers" asp-route-id="@Model.Item.ID">View Item Offers</a> |
+    <a asp-controller="AuctionItems" asp-action="Edit" asp-route-id="@Model.Item.ID">Edit</a> |
+    <a asp-controller="AuctionItems" asp-action="Index">Back to List</a>
+</div>
+<div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Buyer Name
+                </th>
+                <th>
+                    Offer amount
+                </th>
+                <th>
+                    Offer Time
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Offers)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(offer => item.BuyerName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(offer => item.OfferAmount)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(offer => item.OfferTime)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
